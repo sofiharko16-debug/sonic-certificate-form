@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Создать сертификат</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f7f4ef;
+  color: #111;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 18px;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 620px;
+  background: rgba(255,255,255,0.86);
+  border-radius: 30px;
+  padding: 45px 34px;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.08);
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 38px;
+  font-style: italic;
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 34px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+input, textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 16px;
+  font-size: 18px;
+  font-family: Georgia, 'Times New Roman', serif;
+  margin-bottom: 22px;
+  border-radius: 12px;
+}
+
+textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  padding: 18px 24px;
+  background: #111;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+button:hover {
+  opacity: 0.88;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+  <div class="form-card">
+    <h1>Создать сертификат</h1>
+
+    <div class="subtitle">
+      Заполните данные, и готовый подарочный сертификат откроется автоматически ✨
+    </div>
+
+    <form id="certForm">
+      <label>Кому</label>
+      <input type="text" id="to" placeholder="Например: Анне" required>
+
+      <label>От кого</label>
+      <input type="text" id="from" placeholder="Например: от Максима" required>
+
+      <label>Пожелание</label>
+      <textarea id="message" placeholder="Напишите тёплое пожелание" required></textarea>
+
+      <label>Номер сертификата</label>
+      <input type="text" id="certid" placeholder="Например: MS-00124" required>
+
+      <button type="submit">Создать сертификат</button>
+    </form>
+  </div>
+</div>
+
+<script>
+document.getElementById("certForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const to = encodeURIComponent(document.getElementById("to").value);
+  const from = encodeURIComponent(document.getElementById("from").value);
+  const message = encodeURIComponent(document.getElementById("message").value);
+  const certid = encodeURIComponent(document.getElementById("certid").value);
+
+  window.location.href = certificate.html?to=${to}&from=${from}&message=${message}&id=${certid};
+});
+</script>
+
+</body>
+</html>
