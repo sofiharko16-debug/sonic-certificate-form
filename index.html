@@ -115,11 +115,13 @@ document.getElementById("certForm").addEventListener("submit", function(e){
   const message = encodeURIComponent(document.getElementById("message").value);
   const id = encodeURIComponent(document.getElementById("id").value);
 
-  window.location.href =
-    "certificate.html?to=" + to +
-    "&from=" + from +
-    "&message=" + message +
-    "&id=" + id;
+ localStorage.setItem("cert_to", to);
+localStorage.setItem("cert_from", from);
+localStorage.setItem("cert_message", message);
+localStorage.setItem("cert_id", id);
+
+window.location.href =
+"certificate.html?name=" + to.toLowerCase();
 });
 </script>
 </body>
