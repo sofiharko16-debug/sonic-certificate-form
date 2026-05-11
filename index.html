@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Создать сертификат</title>
+<title>Подарочный сертификат</title>
 
 <style>
 * {
@@ -17,120 +17,283 @@ body {
   font-family: Georgia, 'Times New Roman', serif;
 }
 
-.wrapper {
+.hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 18px;
+  padding: 60px 20px;
 }
 
-.form-card {
+.certificate-image {
   width: 100%;
-  max-width: 620px;
-  background: rgba(255,255,255,0.86);
-  border-radius: 30px;
-  padding: 45px 34px;
+  max-width: 980px;
+  border-radius: 22px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+  opacity: 0;
+  transform: translateY(25px) scale(0.98);
+  animation: softAppear 1.2s ease forwards;
+}
+
+.info {
+  min-height: 100vh;
+  padding: 90px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 760px;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(12px);
+  border-radius: 28px;
+  padding: 55px 45px;
+  text-align: center;
   box-shadow: 0 25px 70px rgba(0,0,0,0.08);
 }
 
-h1 {
-  margin: 0 0 16px;
-  font-size: 38px;
-  font-style: italic;
-  text-align: center;
-}
-
-.subtitle {
-  text-align: center;
-  color: #666;
-  font-size: 18px;
-  line-height: 1.5;
-  margin-bottom: 34px;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  letter-spacing: 0.12em;
+.label {
+  font-size: 13px;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
+  margin-bottom: 12px;
   color: #777;
 }
 
-input, textarea {
-  width: 100%;
-  border: 1px solid #ddd;
-  background: #fff;
-  padding: 16px;
-  font-size: 18px;
-  font-family: Georgia, 'Times New Roman', serif;
-  margin-bottom: 22px;
-  border-radius: 12px;
+.value {
+  font-size: 34px;
+  line-height: 1.35;
+  margin-bottom: 38px;
+  font-style: italic;
 }
 
-textarea {
-  min-height: 130px;
-  resize: vertical;
+.message {
+  font-size: 28px;
+  line-height: 1.55;
+  font-style: italic;
+  margin-bottom: 38px;
 }
 
-button {
-  width: 100%;
-  padding: 18px 24px;
+.contact-text {
+  margin-top: 45px;
+  margin-bottom: 18px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.7;
+  color: #555;
+  font-style: italic;
+}
+
+.arrow {
+  margin-top: 14px;
+  font-size: 34px;
+  animation: arrowMove 2s ease-in-out infinite;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 18px 34px;
   background: #111;
   color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 13px;
+  text-decoration: none;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  font-size: 13px;
 }
 
-button:hover {
-  opacity: 0.88;
+.fade-up {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: all 1s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes softAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes arrowMove {
+  0% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: auto;
+    padding: 30px 14px;
+  }
+
+  .certificate-image {
+    border-radius: 14px;
+  }
+
+  .info {
+    padding: 50px 14px;
+  }
+
+  .card {
+    padding: 35px 24px;
+    border-radius: 22px;
+  }
+
+  .value {
+    font-size: 26px;
+  }
+
+  .message {
+    font-size: 23px;
+  }
+
+  .contact-text {
+    font-size: 18px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
-  <div class="form-card">
-    <h1>Создать сертификат</h1>
+<section class="hero">
+  <img src="certificate.jpg" class="certificate-image" alt="Подарочный сертификат">
+</section>
 
-    <div class="subtitle">
-      Заполните данные, и готовый подарочный сертификат откроется автоматически ✨
+<section class="info">
+  <div class="card">
+
+    <div class="fade-up">
+      <div class="label">Кому</div>
+      <div class="value" id="to">Анне ✨</div>
     </div>
 
-    <form id="certForm">
-      <label>Кому</label>
-      <input type="text" id="to" placeholder="Например: Анне" required>
+    <div class="fade-up">
+      <div class="label">От кого</div>
+      <div class="value" id="from">Максима</div>
+    </div>
 
-      <label>От кого</label>
-      <input type="text" id="from" placeholder="Например: от Максима" required>
+    <div class="fade-up">
+      <div class="label">Пожелание</div>
+      <div class="message" id="message">
+        Пусть эта фотосессия подарит тебе яркие эмоции, уверенность в себе и воспоминания, к которым захочется возвращаться снова и снова.
+      </div>
+    </div>
 
-      <label>Пожелание</label>
-      <textarea id="message" placeholder="Напишите тёплое пожелание" required></textarea>
+    <div class="fade-up">
+      <div class="label">Сертификат №</div>
+      <div class="value" id="certid">MS-00124</div>
+    </div>
 
-      <label>Номер сертификата</label>
-      <input type="text" id="certid" placeholder="Например: MS-00124" required>
+    <div class="fade-up contact-text">
+      Чтобы воспользоваться сертификатом,<br>
+      напиши в Instagram и нажми на кнопку ниже 🫶🏻
+      <div class="arrow">↓</div>
+    </div>
 
-      <button type="submit">Создать сертификат</button>
-    </form>
+    <a class="button fade-up" href="https://www.instagram.com/sonich.ph" target="_blank">
+      Перейти в Instagram
+    </a>
+
   </div>
-</div>
+</section>
 
 <script>
-document.getElementById("certForm").addEventListener("submit", function(event) {
-  event.preventDefault();
+function getParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
 
-  const to = encodeURIComponent(document.getElementById("to").value);
-  const from = encodeURIComponent(document.getElementById("from").value);
-  const message = encodeURIComponent(document.getElementById("message").value);
-  const certid = encodeURIComponent(document.getElementById("certid").value);
+const to = getParam("to");
+const from = getParam("from");
+const message = getParam("message");
+const id = getParam("id");
 
-  window.location.href = certificate.html?to=${to}&from=${from}&message=${message}&id=${certid};
+if (to) {
+  document.
+    getElementById("to").innerText = to;
+}
+
+if (from) {
+  document.getElementById("from").innerText = from;
+}
+
+if (message) {
+  document.getElementById("message").innerText = message;
+}
+
+if (id) {
+  document.getElementById("certid").innerText = id;
+}
+
+const elements = document.querySelectorAll(".fade-up");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add("show");
+      }, index * 120);
+    }
+  });
+}, {
+  threshold: 0.2
 });
+
+elements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
+getElementById("to").innerText = to;
+}
+
+if (from) {
+  document.getElementById("from").innerText = from;
+}
+
+if (message) {
+  document.getElementById("message").innerText = message;
+}
+
+if (id) {
+  document.getElementById("certid").innerText = id;
+}
+
+const elements = document.querySelectorAll(".fade-up");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add("show");
+      }, index * 120);
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+elements.forEach(el => observer.observe(el));
 </script>
 
 </body>
