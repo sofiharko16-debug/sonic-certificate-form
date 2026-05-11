@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подарочный сертификат</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f7f4ef;
+  color: #111;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.certificate-image {
+  width: 100%;
+  max-width: 980px;
+  border-radius: 22px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+  opacity: 0;
+  transform: translateY(25px) scale(0.98);
+  animation: softAppear 1.2s ease forwards;
+}
+
+.info {
+  min-height: 100vh;
+  padding: 90px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 760px;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(12px);
+  border-radius: 28px;
+  padding: 55px 45px;
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.08);
+}
+
+.label {
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  color: #777;
+}
+
+.value {
+  font-size: 34px;
+  line-height: 1.35;
+  margin-bottom: 38px;
+  font-style: italic;
+}
+
+.message {
+  font-size: 28px;
+  line-height: 1.55;
+  font-style: italic;
+  margin-bottom: 38px;
+}
+
+.contact-text {
+  margin-top: 45px;
+  margin-bottom: 18px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.7;
+  color: #555;
+  font-style: italic;
+}
+
+.arrow {
+  margin-top: 14px;
+  font-size: 34px;
+  animation: arrowMove 2s ease-in-out infinite;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 18px 34px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: all 1s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes softAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes arrowMove {
+  0% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: auto;
+    padding: 30px 14px;
+  }
+
+  .certificate-image {
+    border-radius: 14px;
+  }
+
+  .info {
+    padding: 50px 14px;
+  }
+
+  .card {
+    padding: 35px 24px;
+    border-radius: 22px;
+  }
+
+  .value {
+    font-size: 26px;
+  }
+
+  .message {
+    font-size: 23px;
+  }
+
+  .contact-text {
+    font-size: 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+  <img src="certificate.jpg" class="certificate-image" alt="Подарочный сертификат">
+</section>
+
+<section class="info">
+  <div class="card">
+
+    <div class="fade-up">
+      <div class="label">Кому</div>
+      <div class="value" id="to">Анне ✨</div>
+    </div>
+
+    <div class="fade-up">
+      <div class="label">От кого</div>
+      <div class="value" id="from">Максима</div>
+    </div>
+
+    <div class="fade-up">
+      <div class="label">Пожелание</div>
+      <div class="message" id="message">
+        Пусть эта фотосессия подарит тебе яркие эмоции, уверенность в себе и воспоминания, к которым захочется возвращаться снова и снова.
+      </div>
+    </div>
+
+    <div class="fade-up">
+      <div class="label">Сертификат №</div>
+      <div class="value" id="certid">MS-00124</div>
+    </div>
+
+    <div class="fade-up contact-text">
+      Чтобы воспользоваться сертификатом,<br>
+      напиши в Instagram и нажми на кнопку ниже 🫶🏻
+      <div class="arrow">↓</div>
+    </div>
+
+    <a class="button fade-up" href="https://www.instagram.com/sonich.ph" target="_blank">
+      Перейти в Instagram
+    </a>
+
+  </div>
+</section>
+
+<script>
+function getParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+const to = getParam("to");
+const from = getParam("from");
+const message = getParam("message");
+const id = getParam("id");
+
+if (to) {
+  document.
+    getElementById("to").innerText = to;
+}
+
+if (from) {
+  document.getElementById("from").innerText = from;
+}
+
+if (message) {
+  document.getElementById("message").innerText = message;
+}
+
+if (id) {
+  document.getElementById("certid").innerText = id;
+}
+
+const elements = document.querySelectorAll(".fade-up");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add("show");
+      }, index * 120);
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+elements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
